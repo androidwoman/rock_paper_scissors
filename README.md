@@ -1,4 +1,6 @@
-Imagine a game of "rock paper scissors".
+ "rock paper scissors"
+ 
+ 
 In this task, you have to create 5 rocks, 5 papers, and 5 scissors.
 Rocks, papers and scissors are square containers. The difference between them can be shown using
 colors, text, and images.
