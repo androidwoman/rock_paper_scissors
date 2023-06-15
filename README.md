@@ -11,3 +11,9 @@ If two objects are of the same type e.g. two rocks, then they will bounce. If tw
 same type, one of them will be removed from the screen and the winner will bounce e.g. if a rock collides
 a scissor, the rock will win, the scissor will be removed and the rock will bounce and move in the opposite
 direction.
+
+DEMO:
+
+https://github.com/androidwoman/rock_paper_scissors/assets/76970164/a8d145bb-deb6-4574-b42f-618a46cb3e15
+
+
