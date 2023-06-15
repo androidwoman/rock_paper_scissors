@@ -62,49 +62,48 @@ class RockPaperScissorsGameState extends State<RockPaperScissorsGame>
 
   void createObjects() {
     for (int i = 0; i < 5; i++) {
-      _objects.add(
-        GameObject(
-          id: i,
-          type: ObjectType.rock,
-          x: _random.nextDouble() *
-              (MediaQuery.of(context).size.width - _objectSize),
-          y: _random.nextDouble() *
-              (MediaQuery.of(context).size.height - _objectSize),
-          dx: _random.nextDouble() * 2 - 1,
-          dy: _random.nextDouble() * 2 - 1,
-        ),
-      );
+      _addObject(i, ObjectType.rock);
     }
 
     for (int i = 5; i < 10; i++) {
-      _objects.add(
-        GameObject(
-          id: i,
-          type: ObjectType.paper,
-          x: _random.nextDouble() *
-              (MediaQuery.of(context).size.width - _objectSize),
-          y: _random.nextDouble() *
-              (MediaQuery.of(context).size.height - _objectSize),
-          dx: _random.nextDouble() * 2 - 1,
-          dy: _random.nextDouble() * 2 - 1,
-        ),
-      );
+      _addObject(i, ObjectType.paper);
     }
 
     for (int i = 10; i < 15; i++) {
-      _objects.add(
-        GameObject(
-          id: i,
-          type: ObjectType.scissors,
-          x: _random.nextDouble() *
-              (MediaQuery.of(context).size.width - _objectSize),
-          y: _random.nextDouble() *
-              (MediaQuery.of(context).size.height - _objectSize),
-          dx: _random.nextDouble() * 2 - 1,
-          dy: _random.nextDouble() * 2 - 1,
-        ),
-      );
+      _addObject(i, ObjectType.scissors);
     }
+  }
+
+  void _addObject(int i, ObjectType type) {
+    GameObject newObj;
+    do {
+      final double x = _random.nextDouble() *
+          (MediaQuery.of(context).size.width - _objectSize);
+      final double y = _random.nextDouble() *
+          (MediaQuery.of(context).size.height - _objectSize);
+      final double dx = _random.nextDouble() * 2 - 1;
+      final double dy = _random.nextDouble() * 2 - 1;
+
+      newObj = GameObject(
+        id: i,
+        type: type,
+        x: x,
+        y: y,
+        dx: dx,
+        dy: dy,
+      );
+    } while (checkCollisionsForObject(newObj));
+
+    _objects.add(newObj);
+  }
+
+  bool checkCollisionsForObject(GameObject newObj) {
+    for (final obj in _objects) {
+      if (isColliding(obj, newObj)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   void moveObjects() {
